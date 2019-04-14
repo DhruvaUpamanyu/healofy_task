@@ -8,8 +8,10 @@ import java.util.*;
 
 public class LoggerImpl implements Logger<Logs> {
 
-    //bucket size in milliseconds
+    //15 minutes bucket size in milliseconds
     private static final long groupSize  = 15l*60l*1000l;
+
+    private static final String dateFormat = "yyyy-MM-dd HH:mm:ss";
 
     private List<Logs> logsList;
 
@@ -100,8 +102,15 @@ public class LoggerImpl implements Logger<Logs> {
         }
     }
 
+    /**
+     * Format output
+     * @param start
+     * @param exception
+     * @param count
+     * @return
+     */
     private static String getFormattedLogs(long start, String exception, Integer count){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
         return simpleDateFormat.format(new Date(start))+" "+simpleDateFormat.format(new Date(LoggerImpl.groupSize +start))
                 +" "+exception+" "+count;
     }

@@ -24,6 +24,19 @@ public class LogReaderImpl implements LogReader {
         executor=Executors.newFixedThreadPool(threads);
     }
 
+    @Override
+    public void readLogFile(List<String> logFiles) {
+        try {
+            executor.invokeAll(createTasks(logFiles));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void printLogs() {
+        logger.printLogs();
+    }
 
     private List<Logs> getLogsFromStream(String logStreamPath){
         List<Logs> logsList = new ArrayList<>();
@@ -50,16 +63,6 @@ public class LogReaderImpl implements LogReader {
             e.printStackTrace();
         }
         return logsList;
-    }
-
-    @Override
-    public void readLogFile(List<String> logFiles) {
-        try {
-            executor.invokeAll(createTasks(logFiles));
-            logger.printLogs();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     private List<Callable<List<Logs>>> createTasks(List<String> logs){

@@ -10,6 +10,7 @@ public class Main {
     public static void main(String[] args) {
         LogReader logReader = new LogReaderImpl();
         logReader.readLogFile(Arrays.asList(("./src/testdata/t1.txt"),"./src/testdata/t2.txt"));
+        logReader.printLogs();
     }
 }
 

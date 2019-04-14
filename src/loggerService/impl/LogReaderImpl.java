@@ -25,17 +25,13 @@ public class LogReaderImpl implements LogReader {
     }
 
     @Override
-    public void readLogFile(List<String> logFiles) {
+    public void readAndPrintLogs(List<String> logFiles) {
         try {
             executor.invokeAll(createTasks(logFiles));
+            logger.printLogs();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void printLogs() {
-        logger.printLogs();
     }
 
     private List<Logs> getLogsFromStream(String logStreamPath){

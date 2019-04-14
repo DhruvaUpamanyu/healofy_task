@@ -5,6 +5,5 @@ import java.util.List;
 
 
 public interface LogReader{
-    void readLogFile(List<String> logFilesPath);
-    void printLogs();
+    void readAndPrintLogs(List<String> logFilesPath);
 }

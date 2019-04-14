@@ -59,7 +59,6 @@ public class LoggerImpl implements Logger<Logs> {
          */
         Collections.sort(logsList);
         Logs first = logsList.get(0);
-        Logs last = logsList.get(logsList.size()-1);
         Long previousBucket=-1l;
         for(Logs logs:logsList){
             Long keyBucket = getBucket(logs.getRequestDate(),first.getRequestDate());
